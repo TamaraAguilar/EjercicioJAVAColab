@@ -8,129 +8,23 @@ import java.util.HashMap;
 @SpringBootApplication
 public class Clase1602Application {
 
-	/* Condicionales en JS
-	 * if(condicion){
-	 * se ejecuta aquí si se cumple la condicion
-	 * }else if(condicion) {
-	 * si no se cumple la de arriba pero la de aquí, entra aquí
-	 * }else{
-	 * si no cumplen ninguna de las condiciones anteriores, se realiza esta opción
-	 * }
-	 * Esto se escribe y funciona exactamente igual en JAVA 
-	 */
 
-	 /*Cuales son los ciclos que conocemos
-		For, while, do...while
-	  * for en JS
-		for(let i = 0; condición; i++){
-			mientras la condición sea verdad, esto se va a ejecutar :D
-		}
-		while en JS
-		while(condición){
-			mientras la condición sea verdad, esto se va a ejecutar :D
-		}
+		//Primero debemos crear las funciones que ocuparemos en este ejercicio:
 
-		do{
-			entra al menos una vez y luego comprueba la condición y si es verdadera vuelve a iterar :D
-		}while(condición);
-		-------------------------------
-		los while se ecriben exactamente igual en JV, pero el for cambia LEVEMENTE
-
-		for(int i = 0; condición; i++){
-			mientras la condición sea verdad, esto se va a ejecutar :D
-		}
-
-	  */
-
-	  /* Como se escribian en JS
-	   * const nomArray = [];
-	   * Array en JAVA
-	   * Paso1: importar librería de array (import java.util.ArrayList;)
-	   * primero definimos el tipo de dato (arraylist)
-	   * luego definimos el tipo de dato QUE VA A CONTENER el arraylist
-	   * luego se le entrega el nombre y se inicializa con el new
-	   * ArrayList <String> nomArrayString = new ArrayList<String>();
-	   * ArrayList <Integer> nomArrayInt = new ArrayList<Integer>();
-	   * Este es un ejemplo de ArrayList<String>
-	   * ["string1", "string2", "string3"]
-	   * ["string2", 2, "otro string"] -> esto está malo, porque tiene un valor int 
-	   * Este es un ejemplo de ArrayList<Integer>
-	   * [1, 2, 4, 14]
-	   * [1, 3, 4.4, 7]-> esto está malo, porque tiene un valor Double
-	   * dentro de un array de Strings
-	   * Funcionalidades de los ArrayList
-	   * 
-	   * Para agregar datos a un arraylist 
-	   * es el simil de push
-	   * nomArrayString.add("palabra");
-	   * 
-	   * Para obtener el valor que existe en un indice predeterminado
-	   * nomArrayString.get(0); (donde 0 es el indice que yo voy a buscar)
-	   * 
-	   * Para cambiar un dato en específico según si indice 
-	   * nomArrayString.set(0, "newString1"); (donde 0 es el indice que yo voy a 
-	   * cambiar y "newString1" será la nueva palabra)
-	   * 
-	   * Para remover o eliminar un dato según su indice
-	   * nomArrayString.remove(0); Donde 0 es el indice
-	   * 
-	   * Para limpiar un arraylist COMPLETO, BORRA TODOO
-	   * nomArrayString.clear();
-	   * 
-	   * Para obtener la cantidad de datos que tiene un arraylist
-	   * nomArrayString.size();
-	   * 
-	   */
-
-	   /*HashMap
-		* Para poder ocupar HashMap debemos primero importar si librería
-		(import java.util.HashMap;)
-		Para poder definir un HashMap, se hace de la siguente forma
-		HashMap <String, Double> nomHashMap = new HashMap<String, Double>();
-		ejemplo de como se vería en consola :D
-		[
-			{"Pamela": 4.0},
-			{"Fabian": 6.8},
-			{"Diego": 6.5}
-		]
-
-		Como ingresamos datos al hashMap
-		nomHashMap.put("Danissa", 6.2);
-		nomHashMap.put("Camila", 6.3);
-
-		como obtener datos segun la llave
-		nomHashMap.get("Fabian")
-		//Devuelve->6.8
-
-		Como podemos remover datos segun una llave
-		nomHashMap.remove("Pamela");
-
-		Como limpiar todos los valores de un HashMap
-		nomHashMap.clear();
-
-		Como obtengo el valor total de los datos que tengo en un HashMap
-		nomHashMap.size();
-
-		Como iterar un hashmap obteniendo la llave y el valor
-		Manda el tipo de dato de la llave
-		for(String i : nomHashMap.keySet()){
-			System.out.print("Key: "+ i + " Valor: "+ nomHashMap.get(i));
-		}
-
-	    */
-
-		/*funciones del ejercicios colaborativo */
-		/*funcion para sacar el promedio */
+		//FUNCIÓN 1: para calcular el promedio de notas. Los parámetros que se usan son el array que contiene cada una de las notas de cada alumno.
 		public static Double promedioNotas(ArrayList<Double> notas){
 			Double suma = 0.0;
 			for (int i = 0; i < notas.size(); i++) {
 				//suma = suma + notas.get(i) -> es lo mismo :D
 				suma += notas.get(i);
 			}
+			//Retorna la suma de las notas de cada alumno y la divide por el total (notas.size)
+			/*Más abajo, cuando llamamos a la función promedioNotas(), le agregamos como parámetro el HashMap que va a contener el arreglo con las notas.
+			Por ahora, agregamos como parámetro algo descriptivo como un arreglo llamado notas, que se creará más tarde.*/
 			return suma/notas.size();
 		}
-		/*funcion que verifica si el promedio del alumno está aprobado o reprobado */
-
+		
+		//FUNCIÓN 2: para verificar si el promedio del alumno está por sobre o debajo de la nota aprobatoria, en este caso, 4.0
 		public static Boolean aprobado(ArrayList<Double> notas, Double notaAprobatoria){
 			Double promedio = promedioNotas(notas);
 			if(promedio >= notaAprobatoria){
@@ -140,9 +34,11 @@ public class Clase1602Application {
 			}
 		}
 
-		/*funcion que verifica si el promedio del alumno es mayor al promedio general */
+		//FUNCIÓN 3: verifica si el promedio del alumno es mayor al promedio general
 		public static void sobrePromedio(Double promedioGeneral, ArrayList<Double> notas, String nombreAlum){
+			//Creamos una variable que guarde la función 1 que calcula el promedio
 			Double promedioAlumno = promedioNotas(notas);
+			//Creamos una condición if que verifica si el promedio de cada alumno está por sobre o debajo del promedio general
 			if(promedioAlumno>promedioGeneral){
 				System.out.println("El alumno "+nombreAlum+" está sobre el promedio");
 			}else if(promedioAlumno == promedioGeneral){
@@ -181,15 +77,19 @@ public class Clase1602Application {
 	  operaciones que lo requieren
 	  */
 		
+		//Primero debemos abrir el Scanner
 		Scanner teclado = new Scanner(System.in);
+		//Crear las variables que vamos a utilizar junto con el HashMap
 		String nomAlum = "";
 		Double notaAprobatoria = 4.0;
 		HashMap <String, ArrayList<Double>> libroClase = new HashMap<String, ArrayList<Double>>();
 		  
 		//Se declara fuera del do...while ya que si la declaramos adentro
 		//la variable pasa a ser local por ende no podríamos ocuparla fuera de este
+		//Declaramos variables que van a contener la cantidad de alumnos y de notas
 		int cantAlum;
 		int cantNotas;
+		//Hacemos dos do while para que le pida al usuario dos datos, que NO deben ser negativos
 		do{
 			System.out.print("Indique la cantidad de alumnos que va a ingresar: ");
 			cantAlum = teclado.nextInt();
@@ -207,17 +107,19 @@ public class Clase1602Application {
 			}
 		}while(cantNotas <= 0);
 		
-		
+		//Recorremos el array para que vaya preguntando el nombre de cada alumno según la cantidad de alumnos ingresados por el usuario
 		for(int i = 1; i <= cantAlum; i++){
 			teclado.nextLine();
 			ArrayList <Double> notasAlumnos = new ArrayList<Double>();
 			System.out.print("Ingresa nombre del alumno: ");
 			nomAlum = teclado.nextLine();
+			//Hacemos un for dentro del otro for para preguntar por las notas de cada alumno ingresado
 			for(int x = 1; x <= cantNotas; x++){
 				System.out.print("Ingresa nota " +x+ " del alumno "+ nomAlum +": ");
 				Double nota = teclado.nextDouble();
 				notasAlumnos.add(nota);
 			}
+			//Ponemos estas la llave y el arreglo que en este caso representa el valor (los nombres de los alumnos, junto con las notas de estos) en el HashMap con put
 			libroClase.put(nomAlum, notasAlumnos);
 			//desafio, verificar donde deberia o como deberia limpíar el arreglo para que funcione
 			//con la declaración de manera global
@@ -227,10 +129,12 @@ public class Clase1602Application {
 		// for(String i : libroClase.keySet()){
 		// 	System.out.println("key: "+ i +" Valor:" + libroClase.get(i));
 		// }
+
+		//Ahora creamos el menú
 		int opcion = 1; 
 
 		while(opcion != 0){
-
+			//Hacemos un do while para que le pida al usuario que ingrese un número entre 0 y 3
 			do{
 				System.out.println("**************Comienzo de Menú***************");
 				System.out.println("Bienvenido/a");
@@ -242,7 +146,9 @@ public class Clase1602Application {
 				opcion = teclado.nextInt();
 				
 			}while(opcion < 0 || opcion > 3);
-
+			/*Si el usuario escoge la opción 1, el programa llama a la función para calcular el promedio y
+			 * como parámetro le indicamos el HashMap con 'i' para que acceda a cada valor (array con notas)
+			*/
 			if(opcion == 1){
 				for(String i : libroClase.keySet()){
 					//cada vez que ocupemos un for opara hashmap
@@ -251,6 +157,9 @@ public class Clase1602Application {
 					Double promAlum = promedioNotas(libroClase.get(i));
 					System.out.println("El promedio del alumno: "+ i +" es de: " + promAlum);
 				}
+				/*Si el usuario escoge la opción 2, llamamos a la función aprobado y le entregamos como
+				 * parámetros el valor del HM y la nota aprobatoria
+				 */
 			}else if (opcion == 2){
 				for(String i : libroClase.keySet()){
 					Boolean aprobar = aprobado(libroClase.get(i), notaAprobatoria);
@@ -260,18 +169,26 @@ public class Clase1602Application {
 					}else{
 						System.out.println("El alumno/a "+i+" está reprobado");
 					}
-					
+					/*Si el usuario escoge la opción 3, llamamos a la función promedioNotas y hacemos una variable
+					 * que vaya sumando todos estos promedios (que están dentro del HM)
+					 */
 				}
 			}else if(opcion == 3){
 				Double sumaPromedio = 0.0;
 				for(String i : libroClase.keySet()){
 					sumaPromedio = sumaPromedio + promedioNotas(libroClase.get(i));
-					
+					/*La suma de los promedios de cada alumno se dividen por la cantidad de alumnos
+					 * para finalmente poder calcular el promedio general 
+					 */
 				}
 				Double promedioGeneral = sumaPromedio / cantAlum;
 				for(String i : libroClase.keySet()){
+					/*Se llama a la función sobrePromedio y se le entregan como parámetros el promedioGeneral
+					 * el promedio de los alumnos y el nombre de estos.
+					 */
 					sobrePromedio(promedioGeneral, libroClase.get(i), i);
 				}
+				/*Si el usuario escoge la opción 0 se cierra el menú */
 			}else{
 				System.out.println("Gracias por cerrar el menú, hasta pronto :D");
 			}
